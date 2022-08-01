@@ -45,6 +45,39 @@
   top: 5px;
   right: 5px;
 }
+table {
+  border: 1px solid grey;
+}
+table td {
+  border-right: 1px solid grey;
+}
+table th {
+  border-bottom: 1px solid grey;
+  border-right: 1px solid grey;
+  line-height: 1;
+}
+
+table td, th {
+  padding: 3px 5px;
+}
+table tr:nth-child(even) { 
+  background-color: #e6e6e6;
+
+}
+body[dark-mode] table tr:nth-child(even) { 
+  background-color: rgba(255, 255, 255, 0.05);
+
+}
+body[dark-mode] table {
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+body[dark-mode] table td {
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+}
+body[dark-mode] table th {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+}
 body[dark-mode] .shooterAge {
   color: black;
 }
