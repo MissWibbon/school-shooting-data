@@ -652,6 +652,7 @@ import { Chart as ChartJS,
             <tbody>
               <tr>
                 <th>Date</th>
+                <th>School</th>
                 <th>State</th>
                 <th>City</th>
                 <th>Casualties</th>
@@ -666,6 +667,7 @@ import { Chart as ChartJS,
                 return (
                   <tr>
                     <td>{obj.date}</td>
+                    <td>{obj.school_name}</td>
                     <td>{obj.state}</td>
                     <td>{obj.city}</td>
                     <td>{obj.casualties}</td>
