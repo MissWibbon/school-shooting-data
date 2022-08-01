@@ -647,18 +647,15 @@ import { Chart as ChartJS,
           contentLabel="Example Modal"
         >
           <h2 ref={(_subtitle) => (subtitle = _subtitle)}>{selectedYear}</h2>
-          <span className="shooting-count-year">{shootingYear.length} shootings</span>
           <CloseButton id='closeModal' onClick={closeModal}/>
           <table>
             <tbody>
               <tr>
                 <th>Date</th>
-                <th>School</th>
                 <th>State</th>
                 <th>City</th>
                 <th>Casualties</th>
                 <th>Deaths</th>
-                <th>Shooting type</th>
                 <th>Weapon</th>
                 <th>Weapon Source</th>
                 <th>Shooter Race</th>
@@ -669,16 +666,14 @@ import { Chart as ChartJS,
                 return (
                   <tr>
                     <td>{obj.date}</td>
-                    <td>{obj.school_name}</td>
                     <td>{obj.state}</td>
                     <td>{obj.city}</td>
                     <td>{obj.casualties}</td>
                     <td>{obj.killed}</td>
-                    <td>{obj.shooting_type}</td>
                     <td>{obj.weapon}</td>
                     <td>{obj.weapon_source}</td>
                     <td>{obj.race_ethnicity_shooter1}</td>
-                    <td>{obj.shooter_deceased1 + obj.shooter_deceased2}</td>
+                    <td>{obj.shooter_deceased1}</td>
                   </tr>
                 )
               }) : ''}
