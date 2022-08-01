@@ -1,0 +1,61 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+.doughnut-chart-container {display: flex;}
+
+.doughnut-chart-container {
+  width: 25%;
+}
+.shooterAge {
+  background-color: red;
+  padding: 8px 5px;
+  height: 30px;
+  width: 30px;
+  color: white;
+  font-weight: bold;
+}
+body.dark-mode .shooterAge {
+  color: black;
+}
+@media screen and (max-width: 767px) {
+  .container-list {display: initial;}
+.line-chart-container,
+.doughnut-chart-container {
+  width: 100%;
+  display: inline;
+}
+}
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

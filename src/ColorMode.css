@@ -1,0 +1,13 @@
+.react-switch-bg svg {
+    display: none;
+}
+span.dm-mode {
+    color: gray;
+}
+.switch {
+    align-items: center;
+    display: flex;
+}
+.switch span {
+    margin-right: 5px;
+}
