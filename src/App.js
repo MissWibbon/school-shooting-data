@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
 import logo from './logo.svg';
 import {state, useState} from 'react';
+import CloseButton from 'react-bootstrap/CloseButton';
 import './App.css';
 import { Chart as ChartJS,
   CategoryScale,
@@ -12,29 +13,31 @@ import { Chart as ChartJS,
   Title,
   Tooltip,
   Legend, } from 'chart.js/auto';
-import { Chart, Line, Bar, Doughnut, Bubble, Scatter  } from 'react-chartjs-2';
-import data from './school-shootings-data.json';
-function App() {
-  let subtitle;
-  const [dmMode, setDmMode] = useState(false);
-  const [modalIsOpen, setIsOpen] = useState(false);
+  import { Chart, Line, Bar, Doughnut, Bubble, Scatter  } from 'react-chartjs-2';
+  import data from './school-shootings-data.json';
+  function App() {
+    let subtitle;
+    const [dmMode, setDmMode] = useState(false);
+    const [modalIsOpen, setIsOpen] = useState(false);
+    const [selectedYear, setSelectedYear] = useState('')
+    const [shootingYear, setShootingYear] = useState([])
   function openModal() {
     setIsOpen(true);
   }
   function afterOpenModal() {
     // references are now sync'd and can be accessed.
     subtitle.style.color = '#f00';
+    setShootingYear(dataSet[selectedYear])
+
   }
 
   function closeModal() {
     setIsOpen(false);
   }
   function dmToggle() {
-    console.log(dmMode)
     document.querySelector('.react-switch-handle').addEventListener('change',
     function() {
       setDmMode(!dmMode)
-      console.log(dmMode)
 
     })
   }
@@ -130,9 +133,17 @@ function App() {
   shooter.hispanicKills = 0
   shooter.asian = 0
   shooter.asianKills = 0
-  
+  shooter.weapon = []
+  shooter.weaponSource = []
+
   data.forEach(obj => {
     Object.entries(obj).forEach(([key, value]) => {
+      if (key === 'weapon') {
+        shooter.weapon.push(obj.weapon)
+      }
+      if (key === 'weapon_source' && value !== null || key === 'weapon_source' && value !== undefined) {
+        shooter.weaponSource.push(obj.weapon_source)
+      }
       if (key === 'race_ethnicity_shooter1' && value === 'w') {
         shooter.white = shooter.white + 1
         shooter.whiteKills = shooter.whiteKills + obj.killed
@@ -329,16 +340,61 @@ function App() {
       }
     });
   });
-  
-  console.log(shooterAges)
+
+  const [dataSet, setDataSet] = useState({
+    '1999': year1999,
+    '2000': year2000,
+    '2001': year2001,
+    '2002': year2002,
+    '2003': year2003,
+    '2004': year2004,
+    '2005': year2005,
+    '2006': year2006,
+    '2007': year2007,
+    '2008': year2008,
+    '2009': year2009,
+    '2010': year2010,
+    '2011': year2011,
+    '2012': year2012,
+    '2013': year2013,
+    '2014': year2014,
+    '2015': year2015,
+    '2016': year2016,
+    '2017': year2017,
+    '2018': year2018,
+    '2019': year2019,
+    '2020': year2020,
+    '2021': year2021,
+    '2022': year2022
+  })
+  //console.log(shooter.weapon)
+  //console.log(shooter.weaponSource)
     return (
       <div className="App" style={{position: 'relative', height:40 + 'vh', width:98 + 'vw'}}>
         <div className="container-list">
   
           <div className="line-chart-container">
             <Bar 
+              id='barChart'
               datasetIdKey='id'
               options={{
+                onClick: function(evt, element) {
+                  if(element.length > 0){
+                    let year = 1999;
+                    var ind = element[0].index;
+                    setSelectedYear(year + ind)
+                    let yearString = 'year' + selectedYear.toString()
+                    console.log(yearString)
+                    console.log(dataSet[selectedYear])
+                    setShootingYear(dataSet[selectedYear])
+                    setTimeout(setShootingYear(dataSet[selectedYear]), 4000)
+                    console.log(evt)
+                    console.log(element)
+                    console.log(ind)
+                    console.log(selectedYear)
+                    openModal()
+                  }
+                },
                 scales: {
                   x: {
                     stacked: false,
@@ -584,7 +640,49 @@ function App() {
               }} />
         </div>
         <p>The average age of a school shooter is <span className="shooterAge">{Math.round(shooterAges.reduce((a, b) => a + b) / shooterAges.length * 100) / 100}</span> years old.</p>
+        <Modal
+          isOpen={modalIsOpen}
+          onAfterOpen={afterOpenModal}
+          onRequestClose={closeModal}
+          contentLabel="Example Modal"
+        >
+          <h2 ref={(_subtitle) => (subtitle = _subtitle)}>{selectedYear}</h2>
+          <CloseButton id='closeModal' onClick={closeModal}/>
+          <div>I am a modal</div>
+          <table>
+            <tbody>
+              <tr>
+                <th>Date</th>
+                <th>State</th>
+                <th>City</th>
+                <th>Casualties</th>
+                <th>Deaths</th>
+                <th>Weapon</th>
+                <th>Weapon Source</th>
+                <th>Shooter Race</th>
+                <th>Shooter Killed</th>
+              </tr>
+              {shootingYear ? 
+                shootingYear.map((obj) => {
+                return (
+                  <tr>
+                    <th>{obj.date}</th>
+                    <th>{obj.state}</th>
+                    <th>{obj.city}</th>
+                    <th>{obj.casualties}</th>
+                    <th>{obj.killed}</th>
+                    <th>{obj.weapon}</th>
+                    <th>{obj.weapon_source}</th>
+                    <th>{obj.race_ethnicity_shooter1}</th>
+                    <th>{obj.shooter_deceased1}</th>
+                  </tr>
+                )
+              }) : ''}
+            </tbody>
+          </table>
+        </Modal>
       </div>
+      
     );
   }
   

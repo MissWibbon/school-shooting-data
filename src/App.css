@@ -40,11 +40,26 @@
   color: white;
   font-weight: bold;
 }
+#closeModal {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
 body[dark-mode] .shooterAge {
   color: black;
 }
 body[dark-mode] p {
   color: #c4c3c3 !important;
+}
+body[dark-mode] .ReactModal__Content {
+  background-color: black !important;
+  color: white;
+}
+body[dark-mode] .btn-close {
+  filter: invert(1) grayscale(100%) brightness(200%);
+}
+body[dark-mode] .ReactModal__Overlay {
+  background-color: rgba(255, 255, 255, 0.05) !important;
 }
 @media screen and (max-width: 767px) {
   .container-list {display: initial;}
