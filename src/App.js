@@ -657,9 +657,11 @@ import { Chart as ChartJS,
                 <th>City</th>
                 <th>Casualties</th>
                 <th>Deaths</th>
+                <th>Shooting type</th>
                 <th>Weapon</th>
                 <th>Weapon Source</th>
                 <th>Shooter Race</th>
+                <th>Shooter Age</th>
                 <th>Shooter Killed</th>
               </tr>
               {shootingYear ? 
@@ -672,9 +674,11 @@ import { Chart as ChartJS,
                     <td>{obj.city}</td>
                     <td>{obj.casualties}</td>
                     <td>{obj.killed}</td>
+                    <td>{obj.shooting_type}</td>
                     <td>{obj.weapon}</td>
                     <td>{obj.weapon_source}</td>
                     <td>{obj.race_ethnicity_shooter1}</td>
+                    <td>{obj.age_shooter1}</td>
                     <td>{obj.shooter_deceased1}</td>
                   </tr>
                 )
