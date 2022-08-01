@@ -1,3 +1,6 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Modal from 'react-modal';
 import logo from './logo.svg';
 import {state, useState} from 'react';
 import './App.css';
@@ -12,7 +15,20 @@ import { Chart as ChartJS,
 import { Chart, Line, Bar, Doughnut, Bubble, Scatter  } from 'react-chartjs-2';
 import data from './school-shootings-data.json';
 function App() {
-  const [dmMode, setDmMode] = useState(false)
+  let subtitle;
+  const [dmMode, setDmMode] = useState(false);
+  const [modalIsOpen, setIsOpen] = useState(false);
+  function openModal() {
+    setIsOpen(true);
+  }
+  function afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    subtitle.style.color = '#f00';
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
   function dmToggle() {
     console.log(dmMode)
     document.querySelector('.react-switch-handle').addEventListener('change',
@@ -333,7 +349,7 @@ function App() {
                   y: {
                     stacked: false,
                     grid: {
-                      color: !dmMode ? '#282828' : '#282828',
+                      color: !dmMode ? '#c4c3c3' : '#282828',
                     }
                   }
                 },
@@ -422,7 +438,7 @@ function App() {
           </div>
           <div className="doughnut-chart-container">
             <Doughnut data={{
-                labels: ['Male', 'Female', 'Unidentified'],
+                labels: ['Male shooter', 'Female shooter', 'Unidentified'],
                 datasets: [
                   {
                     id: 7,
@@ -476,7 +492,7 @@ function App() {
                 ],
               }} />
               <Doughnut data={{
-                labels: ['White', 'Black', 'Hispanic', 'Asian'],
+                labels: ['White shooter', 'Black shooter', 'Hispanic shooter', 'Asian shooter'],
                 datasets: [
                   {
                     id: 8,
@@ -530,7 +546,8 @@ function App() {
                 ],
               }} />
           </div>
-              <Scatter data={{
+              <Scatter 
+              data={{
                 labels: ['Ages'],
                 datasets: [
                   {
@@ -548,6 +565,22 @@ function App() {
                     borderWidth: 1
                   }
                 ],
+              }}
+              options={{
+                scales: {
+                  x: {
+                    stacked: false,
+                    grid: {
+                      color: !dmMode ? '#c4c3c3' : '#282828',
+                    }
+                  },
+                  y: {
+                    stacked: false,
+                    grid: {
+                      color: !dmMode ? '#c4c3c3' : '#282828',
+                    }
+                  }
+                },
               }} />
         </div>
         <p>The average age of a school shooter is <span className="shooterAge">{Math.round(shooterAges.reduce((a, b) => a + b) / shooterAges.length * 100) / 100}</span> years old.</p>

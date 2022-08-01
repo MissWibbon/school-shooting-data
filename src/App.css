@@ -34,14 +34,17 @@
 }
 .shooterAge {
   background-color: red;
-  padding: 8px 5px;
+  padding: 5px 3px;
   height: 30px;
   width: 30px;
   color: white;
   font-weight: bold;
 }
-body.dark-mode .shooterAge {
+body[dark-mode] .shooterAge {
   color: black;
+}
+body[dark-mode] p {
+  color: #c4c3c3 !important;
 }
 @media screen and (max-width: 767px) {
   .container-list {display: initial;}
