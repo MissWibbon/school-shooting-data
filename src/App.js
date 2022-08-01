@@ -432,13 +432,13 @@ import { Chart as ChartJS,
                     id: 1,
                     label: 'School Shootings',
                     fill: true,
-                    data: [year1999.length, year2000.length, year2001.length,
-                    year2002.length, year2003.length, year2004.length, year2005.length,
-                    year2006.length, year2007.length, year2008.length, year2009.length,
-                    year2010.length, year2011.length, year2012.length, year2013.length,
-                    year2014.length, year2015.length, year2016.length, year2017.length,
-                    year2018.length, year2019.length, year2020.length, year2021.length,
-                    year2022.length],
+                    data: [year1999.length - 2, year2000.length - 2, year2001.length - 2,
+                    year2002.length - 2, year2003.length - 2, year2004.length - 2, year2005.length - 2,
+                    year2006.length - 2, year2007.length - 2, year2008.length - 2, year2009.length - 2,
+                    year2010.length - 2, year2011.length - 2, year2012.length - 2, year2013.length - 2,
+                    year2014.length - 2, year2015.length - 2, year2016.length - 2, year2017.length - 2,
+                    year2018.length - 2, year2019.length - 2, year2020.length - 2, year2021.length - 2,
+                    year2022.length - 2],
                     backgroundColor: [
                       'rgba(255, 159, 64, 0.4)'
                     ],
@@ -647,7 +647,7 @@ import { Chart as ChartJS,
           contentLabel="Example Modal"
         >
           <h2 ref={(_subtitle) => (subtitle = _subtitle)}>{selectedYear}</h2>
-          <span className="shooting-count-year">{shootingYear.length} shootings</span>
+          <span className="shooting-count-year">{shootingYear.length - 2} shootings</span>
           <CloseButton id='closeModal' onClick={closeModal}/>
           <table>
             <tbody>
