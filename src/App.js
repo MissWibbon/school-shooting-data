@@ -679,7 +679,7 @@ import { Chart as ChartJS,
                     <td>{obj.weapon_source}</td>
                     <td>{obj.race_ethnicity_shooter1}</td>
                     <td>{obj.age_shooter1}</td>
-                    <td>{obj.shooter_deceased1}</td>
+                    <td>{obj.shooter_deceased1 === 1 ? 'yes' : 'no'}</td>
                   </tr>
                 )
               }) : ''}
