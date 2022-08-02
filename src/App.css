@@ -44,10 +44,22 @@ span.copyright {
   color: white;
   font-weight: bold;
 }
+.averageAge{
+  margin-top: 2rem;
+}
 #closeModal {
   position: absolute;
   top: 5px;
   right: 5px;
+}
+.expand-chart {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  display: none;
+}
+.line-chart-container.expanded {
+  width: 200%;
 }
 table {
   border: 1px solid grey;
@@ -99,14 +111,15 @@ body[dark-mode] .btn-close {
 body[dark-mode] .ReactModal__Overlay {
   background-color: rgba(255, 255, 255, 0.05) !important;
 }
+body[dark-mode] .expand-chart svg {fill: #c4c3c3;}
 @media screen and (max-width: 767px) {
   .container-list {display: initial;    top: 1rem;
     position: relative;}
   .line-chart-container,
   .doughnut-chart-container {
     width: 100%;
-    display: inline;
   }
+  .expand-chart {display: block;}
   .container-list {padding-top: 1rem;}
   span.copyright,
   label.switch {font-size: 10px;}
