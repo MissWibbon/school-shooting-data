@@ -1,4 +1,6 @@
 import React from 'react';
+import { BiExpand } from 'react-icons/bi';
+import { GiContract } from 'react-icons/gi';
 import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
 import logo from './logo.svg';
@@ -21,7 +23,70 @@ import { Chart as ChartJS,
     const [modalIsOpen, setIsOpen] = useState(false);
     const [selectedYear, setSelectedYear] = useState('')
     const [shootingYear, setShootingYear] = useState([])
-  function openModal() {
+    let monthCasualties = {
+      'January': {
+        shootings: 0,
+        casualties: 0,
+        deaths: 0
+      },
+      'February': {
+        shootings: 0,
+        casualties: 0,
+        deaths: 0
+      },
+      'March': {
+        shootings: 0,
+        casualties: 0,
+        deaths: 0
+      },
+      'April': {
+        shootings: 0,
+        casualties: 0,
+        deaths: 0
+      },
+      'May': {
+        shootings: 0,
+        casualties: 0,
+        deaths: 0
+      },
+      'June': {
+        shootings: 0,
+        casualties: 0,
+        deaths: 0
+      },
+      'July': {
+        shootings: 0,
+        casualties: 0,
+        deaths: 0
+      },
+      'August': {
+        shootings: 0,
+        casualties: 0,
+        deaths: 0
+      },
+      'September': {
+        shootings: 0,
+        casualties: 0,
+        deaths: 0
+      },
+      'October': {
+        shootings: 0,
+        casualties: 0,
+        deaths: 0
+      },
+      'November': {
+        shootings: 0,
+        casualties: 0,
+        deaths: 0
+      },
+      'December': {
+        shootings: 0,
+        casualties: 0,
+        deaths: 0
+      }
+    }
+  const [showZoom, setShowZoom] = useState(true)
+    function openModal() {
     setIsOpen(true);
   }
   function afterOpenModal() {
@@ -138,6 +203,72 @@ import { Chart as ChartJS,
 
   data.forEach(obj => {
     Object.entries(obj).forEach(([key, value]) => {
+      if (key === 'date') {
+        let date = value.split('/')
+        let month = Number(date[0])
+        console.log(month)
+        if(month == 1) {
+          console.log(obj.casualties)
+          monthCasualties.January.shootings = monthCasualties.January.shootings + 1
+          monthCasualties.January.casualties = monthCasualties.January.casualties + Number(obj.casualties)
+          monthCasualties.January.deaths = monthCasualties.January.deaths + Number(obj.killed)
+        }
+        if(month === 2) {
+          monthCasualties.February.shootings = monthCasualties.February.shootings + 1
+          monthCasualties.February.casualties = monthCasualties.February.casualties + Number(obj.casualties)
+          monthCasualties.February.deaths = monthCasualties.February.deaths + Number(obj.killed)
+        }
+        if(month === 3) {
+          monthCasualties.March.shootings = monthCasualties.March.shootings + 1
+          monthCasualties.March.casualties = monthCasualties.March.casualties + Number(obj.casualties)
+          monthCasualties.March.deaths = monthCasualties.March.deaths + Number(obj.killed)
+        }
+        if(month === 4) {
+          monthCasualties.April.shootings = monthCasualties.April.shootings + 1
+          monthCasualties.April.casualties = monthCasualties.April.casualties + Number(obj.casualties)
+          monthCasualties.April.deaths = monthCasualties.April.deaths + Number(obj.killed)
+        }
+        if(month === 5) {
+          monthCasualties.May.shootings = monthCasualties.May.shootings + 1
+          monthCasualties.May.casualties = monthCasualties.May.casualties + Number(obj.casualties)
+          monthCasualties.May.deaths = monthCasualties.May.deaths + Number(obj.killed)
+        }
+        if(month === 6) {
+          monthCasualties.June.shootings = monthCasualties.June.shootings + 1
+          monthCasualties.June.casualties = monthCasualties.June.casualties + Number(obj.casualties)
+          monthCasualties.June.deaths = monthCasualties.June.deaths + Number(obj.killed)
+        }
+        if(month === 7) {
+          monthCasualties.July.shootings = monthCasualties.July.shootings + 1
+          monthCasualties.July.casualties = monthCasualties.July.casualties + Number(obj.casualties)
+          monthCasualties.July.deaths = monthCasualties.July.deaths + Number(obj.killed)
+        }
+        if(month === 8) {
+          monthCasualties.August.shootings = monthCasualties.August.shootings + 1
+          monthCasualties.August.casualties = monthCasualties.August.casualties + Number(obj.casualties)
+          monthCasualties.August.deaths = monthCasualties.August.deaths + Number(obj.killed)
+        }
+        if(month === 9) {
+          monthCasualties.September.shootings = monthCasualties.September.shootings + 1
+          monthCasualties.September.casualties = monthCasualties.September.casualties + Number(obj.casualties)
+          monthCasualties.September.deaths = monthCasualties.September.deaths + Number(obj.killed)
+        }
+        if(month === 10) {
+          monthCasualties.October.shootings = monthCasualties.October.shootings + 1
+          monthCasualties.October.casualties = monthCasualties.October.casualties + Number(obj.casualties)
+          monthCasualties.October.deaths = monthCasualties.October.deaths + Number(obj.killed)
+        }
+        if(month === 11) {
+          monthCasualties.November.shootings = monthCasualties.November.shootings + 1
+          monthCasualties.November.casualties = monthCasualties.November.casualties + Number(obj.casualties)
+          monthCasualties.November.deaths = monthCasualties.November.deaths + Number(obj.killed)
+        }
+        if(month === 12) {
+          monthCasualties.December.shootings = monthCasualties.December.shootings + 1
+          monthCasualties.December.casualties = monthCasualties.December.casualties + Number(obj.casualties)
+          monthCasualties.December.deaths = monthCasualties.December.deaths + Number(obj.killed)
+        }
+      }
       if (key === 'weapon') {
         shooter.weapon.push(obj.weapon)
       }
@@ -340,7 +471,7 @@ import { Chart as ChartJS,
       }
     });
   });
-
+  console.log(monthCasualties)
   const [dataSet, setDataSet] = useState({
     '1999': year1999,
     '2000': year2000,
@@ -369,11 +500,26 @@ import { Chart as ChartJS,
   })
   //console.log(shooter.weapon)
   //console.log(shooter.weaponSource)
+  function zoomOutChart() {
+    let chart = document.querySelector('.line-chart-container')
+    chart.classList.add('expanded')
+    setShowZoom(false)
+  }
+  function zoomInChart() {
+    let chart = document.querySelector('.line-chart-container')
+    chart.classList.remove('expanded')
+    setShowZoom(true)
+  }
     return (
       <div className="App" style={{position: 'relative', height:40 + 'vh', width:98 + 'vw'}}>
+          <span className="copyright">Data from <a href="https://github.com/washingtonpost/data-school-shootings/blob/master/school-shootings-data.csv " target="_blank">washingtonpost</a></span>
         <div className="container-list">
-  
           <div className="line-chart-container">
+            <div className="expand-chart">
+            {showZoom ? <BiExpand onClick={zoomOutChart}/>
+            : <GiContract onClick={zoomInChart}/>
+            }
+            </div>
             <Bar 
               id='barChart'
               datasetIdKey='id'
@@ -384,14 +530,8 @@ import { Chart as ChartJS,
                     var ind = element[0].index;
                     setSelectedYear(year + ind)
                     let yearString = 'year' + selectedYear.toString()
-                    console.log(yearString)
-                    console.log(dataSet[selectedYear])
                     setShootingYear(dataSet[selectedYear])
                     setTimeout(setShootingYear(dataSet[selectedYear]), 4000)
-                    console.log(evt)
-                    console.log(element)
-                    console.log(ind)
-                    console.log(selectedYear)
                     openModal()
                   }
                 },
@@ -639,7 +779,97 @@ import { Chart as ChartJS,
                 },
               }} />
         </div>
-        <p>The average age of a school shooter is <span className="shooterAge">{Math.round(shooterAges.reduce((a, b) => a + b) / shooterAges.length * 100) / 100}</span> years old.</p>
+        <p className="averageAge">The average age of a school shooter is <span className="shooterAge">{Math.round(shooterAges.reduce((a, b) => a + b) / shooterAges.length * 100) / 100}</span> years old.</p>
+        <Bar 
+          id='monthChart'
+          datasetIdKey='id'
+          options={{
+            scales: {
+              x: {
+                stacked: false,
+                grid: {
+                  color: !dmMode ? '#c4c3c3' : '#282828',
+                }
+              },
+              y: {
+                stacked: false,
+                grid: {
+                  color: !dmMode ? '#c4c3c3' : '#282828',
+                }
+              }
+            },
+            plugins: {
+              title: {
+                display: true,
+                text: `Shootings per month`
+              },
+              legend: {
+                display: true,
+                position: "bottom",
+                title: 'test'
+              },
+            }
+          }}
+          data={{
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+            datasets: [
+              {
+              id: 9,
+              label: 'Shootings',
+              fill: true,
+              data: [
+                monthCasualties.January.shootings, monthCasualties.February.shootings, monthCasualties.March.shootings, monthCasualties.April.shootings,
+                monthCasualties.May.shootings, monthCasualties.June.shootings,monthCasualties.July.shootings,monthCasualties.August.shootings,
+                monthCasualties.September.shootings, monthCasualties.October.shootings, monthCasualties.November.shootings, monthCasualties.December.shootings
+                ],
+                backgroundColor: [
+                      'rgba(255, 159, 64, 0.4)'
+                    ],
+                    borderColor: [
+                      'rgb(255, 159, 64)'
+                    ],
+                    borderWidth: 1
+              },{
+              id: 10,
+              label: 'Casualties',
+              fill: true,
+              data: [
+                monthCasualties.January.casualties, monthCasualties.February.casualties, monthCasualties.March.casualties, monthCasualties.April.casualties,
+                monthCasualties.May.casualties, monthCasualties.June.casualties,monthCasualties.July.casualties,monthCasualties.August.casualties,
+                monthCasualties.September.casualties, monthCasualties.October.casualties, monthCasualties.November.casualties, monthCasualties.December.casualties
+                ],
+                backgroundColor: [
+                  'rgba(153, 102, 255, 0.4)'
+                ],
+                borderColor: [
+                  'rgb(153, 102, 255)'
+                ],
+                borderDash: [5, 5],
+                borderWidth: 1
+              },
+              {
+                id: 11,
+                label: 'Deaths',
+                fill: true,
+                data: [
+                  monthCasualties.January.deaths, monthCasualties.February.deaths, monthCasualties.March.deaths, monthCasualties.April.deaths,
+                  monthCasualties.May.deaths, monthCasualties.June.deaths, monthCasualties.July.deaths ,monthCasualties.August.deaths,
+                  monthCasualties.September.deaths, monthCasualties.October.deaths, monthCasualties.November.deaths, monthCasualties.December.deaths
+                ],
+                backgroundColor: [
+                  'rgba(255, 99, 132, 0.4)'
+                ],
+                borderColor: [
+                  'rgb(255, 99, 132)'
+                ],
+                
+                borderDash: [5, 5],
+                borderWidth: 1
+              },
+            ]
+          }}
+          
+        />
         <Modal
           isOpen={modalIsOpen}
           onAfterOpen={afterOpenModal}

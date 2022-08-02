@@ -12,7 +12,11 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
-
+span.copyright {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -40,10 +44,22 @@
   color: white;
   font-weight: bold;
 }
+.averageAge{
+  margin-top: 2rem;
+}
 #closeModal {
   position: absolute;
   top: 5px;
   right: 5px;
+}
+.expand-chart {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  display: none;
+}
+.line-chart-container.expanded {
+  width: 200%;
 }
 table {
   border: 1px solid grey;
@@ -65,7 +81,7 @@ table tr:nth-child(even) {
 
 }
 body[dark-mode] table tr:nth-child(even) { 
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: rgba(255, 255, 255, 0.1);
 
 }
 body[dark-mode] table {
@@ -79,9 +95,10 @@ body[dark-mode] table th {
   border-right: 1px solid rgba(255, 255, 255, 0.05);
 }
 body[dark-mode] .shooterAge {
-  color: black;
+  color: black !important;
 }
-body[dark-mode] p {
+body[dark-mode] p,
+body[dark-mode] span {
   color: #c4c3c3 !important;
 }
 body[dark-mode] .ReactModal__Content {
@@ -94,13 +111,18 @@ body[dark-mode] .btn-close {
 body[dark-mode] .ReactModal__Overlay {
   background-color: rgba(255, 255, 255, 0.05) !important;
 }
+body[dark-mode] .expand-chart svg {fill: #c4c3c3;}
 @media screen and (max-width: 767px) {
-  .container-list {display: initial;}
-.line-chart-container,
-.doughnut-chart-container {
-  width: 100%;
-  display: inline;
-}
+  .container-list {display: initial;    top: 1rem;
+    position: relative;}
+  .line-chart-container,
+  .doughnut-chart-container {
+    width: 100%;
+  }
+  .expand-chart {display: block;}
+  .container-list {padding-top: 1rem;}
+  span.copyright,
+  label.switch {font-size: 10px;}
 }
 @keyframes App-logo-spin {
   from {
