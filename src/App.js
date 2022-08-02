@@ -371,8 +371,8 @@ import { Chart as ChartJS,
   //console.log(shooter.weaponSource)
     return (
       <div className="App" style={{position: 'relative', height:40 + 'vh', width:98 + 'vw'}}>
-        <div className="container-list">
           <span className="copyright">Data from <a href="https://github.com/washingtonpost/data-school-shootings/blob/master/school-shootings-data.csv " target="_blank">washingtonpost</a></span>
+        <div className="container-list">
           <div className="line-chart-container">
             <Bar 
               id='barChart'
