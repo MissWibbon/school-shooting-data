@@ -83,7 +83,7 @@ body[dark-mode] table th {
   border-right: 1px solid rgba(255, 255, 255, 0.05);
 }
 body[dark-mode] .shooterAge {
-  color: black;
+  color: black !important;
 }
 body[dark-mode] p,
 body[dark-mode] span {
@@ -100,12 +100,16 @@ body[dark-mode] .ReactModal__Overlay {
   background-color: rgba(255, 255, 255, 0.05) !important;
 }
 @media screen and (max-width: 767px) {
-  .container-list {display: initial;}
-.line-chart-container,
-.doughnut-chart-container {
-  width: 100%;
-  display: inline;
-}
+  .container-list {display: initial;    top: 1rem;
+    position: relative;}
+  .line-chart-container,
+  .doughnut-chart-container {
+    width: 100%;
+    display: inline;
+  }
+  .container-list {padding-top: 1rem;}
+  span.copyright,
+  label.switch {font-size: 10px;}
 }
 @keyframes App-logo-spin {
   from {
